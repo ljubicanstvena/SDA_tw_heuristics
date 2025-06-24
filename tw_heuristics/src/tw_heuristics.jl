@@ -158,9 +158,9 @@ end
 function main()
     parsed_args = parse_commandline()
     println("Parsed args:")
-    for (arg, val) in parsed_args
-        println("  $arg  =>  $val")
-    end
+    # for (arg, val) in parsed_args
+    #     println("  $arg  =>  $val")
+    # end
 
     folder = "../output/generated/" * parsed_args["folder"]
     m = parsed_args["method"]
@@ -174,8 +174,8 @@ function main()
         methods = [m]
     end
 
-    println(folder)
-    println(methods)
+    # println(folder)
+    # println(methods)
 
     start = Dates.now()
     timestamp = Dates.format(start, "yyyy-mm-dd_HH-MM")
