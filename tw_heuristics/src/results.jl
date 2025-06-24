@@ -17,6 +17,8 @@ function save_result(T, x, file_name, output_folder::String="../output/results/"
 
     open(file_path, "w") do io
 
+        # first line missing?
+
         for e in T[2]
             println(io, "N" * string(e[1]) * ",N" * string(e[2]) * ",")
         end

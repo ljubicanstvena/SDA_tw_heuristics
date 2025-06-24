@@ -18,14 +18,15 @@ function read_graph(file_path::AbstractString)::SimpleGraph{Int}
     open(file_path) do file
 
         lines = readlines(file)
+
         # initialize empty graph
-        graph = SimpleGraph(length(lines))
+        n = parse(Int, popfirst!(lines))
+        graph = SimpleGraph(n)
 
         # read every row and save information
         for s in lines
 
-            l = [parse(Int, ss) for ss in split(s, ';')]
-
+            l = [parse(Int, ss) for ss in split(s, ',')]
             u = popfirst!(l)
 
             for v in l
@@ -36,13 +37,14 @@ function read_graph(file_path::AbstractString)::SimpleGraph{Int}
     end
 
     # println(graph)
+    # println(nv(graph))
 
     return graph
 end
 
 
 function main()
-    file = "graph_10_0.5_1.csv"
+    file = "graph_5_0.5_1.csv"
     folder = "../output/generated/"
     file_path = folder * file
 
