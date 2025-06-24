@@ -18,7 +18,7 @@ using Dates
 using ArgParse
 
 
-function load_one(timestamp, file, folder::AbstractString="../output/generated/", method::AbstractArray=[1,2,3])
+function load_one(timestamp, file, folder::AbstractString="../output/generated/", method::AbstractArray=[1, 2, 3])
     cd(@__DIR__)
     # print(file)
     output_folder = replace(folder, "generated" => "results/" * timestamp * "/")
@@ -31,7 +31,7 @@ function load_one(timestamp, file, folder::AbstractString="../output/generated/"
         ne = neighbors(graph, u)
         push!(neigh, [u, ne])
     end
-    
+
     if 1 in method
         ordering_gmd = greedy_min_degree(graph)
         # println(ordering_gmd)
@@ -56,7 +56,7 @@ function load_one(timestamp, file, folder::AbstractString="../output/generated/"
 end
 
 
-function load_all(folder::AbstractString="../output/generated/", method::AbstractArray=[1,2,3], timestamp::AbstractString=Dates.format(Dates.now(), "yyyy-mm-dd_HH-MM"))
+function load_all(folder::AbstractString="../output/generated/", method::AbstractArray=[1, 2, 3], timestamp::AbstractString=Dates.format(Dates.now(), "yyyy-mm-dd_HH-MM"))
     cd(@__DIR__)
     print("Method: " * string(method) * "...............................")
     file_list = readdir(folder)
@@ -66,7 +66,7 @@ function load_all(folder::AbstractString="../output/generated/", method::Abstrac
     for file in file_list
         load_one(timestamp, file, folder, method)
     end
-    
+
     duration = Dates.now() - start
     println(duration)
 
@@ -115,40 +115,40 @@ function main_old()
     # folder = "../output/generated_big/"
     # folder = "../output/generated/"
     # method = [1]
-    method = [1,2,3]
+    method = [1, 2, 3]
 
     # load_all(folder, method, timestamp)
 
-    folder =  "../output/generated/1000/075/"
+    folder = "../output/generated/1000/075/"
     methods = [3]
     load_run_save_statistics(folder, timestamp, methods)
-    
+
     # folders = ["../output/generated/10/", "../output/generated/100/", "../output/generated/1000/025/", "../output/generated/1000/05/", "../output/generated/1000/075/"]
     folders = ["../output/generated/1000/025/", "../output/generated/1000/05/", "../output/generated/1000/075/"]
     # folders = ["../output/generated/200/025/", "../output/generated/200/05/", "../output/generated/200/075/"]
     methods = [1]
-    for folder in folders 
+    for folder in folders
         # load_run_save_statistics(folder, timestamp, methods)
     end
 
     println("works")
-    
+
 end
 
 
 function parse_commandline()
     s = ArgParseSettings()
-    
+
     @add_arg_table s begin
         "--folder", "-f"
-            help = "source folder name in folder \"../ouput/generated/\""
-            arg_type = AbstractString
-            default = ""
+        help = "source folder name in folder \"../ouput/generated/\""
+        arg_type = AbstractString
+        default = ""
         "--method", "-m"
-            help = "method for finding elimination ordering (1 = gmd, 2 = gmf, 3 = gmc, 0 = all three)"
-            arg_type = Int
-            default = 0
-    
+        help = "method for finding elimination ordering (1 = gmd, 2 = gmf, 3 = gmc, 0 = all three)"
+        arg_type = Int
+        default = 0
+
     end
 
     return parse_args(s)
@@ -158,7 +158,7 @@ end
 function main()
     parsed_args = parse_commandline()
     println("Parsed args:")
-    for (arg,val) in parsed_args
+    for (arg, val) in parsed_args
         println("  $arg  =>  $val")
     end
 
@@ -180,7 +180,7 @@ function main()
     start = Dates.now()
     timestamp = Dates.format(start, "yyyy-mm-dd_HH-MM")
 
-    # load_run_save_statistics(folder, timestamp, methods)
+    load_run_save_statistics(folder, timestamp, methods)
 end
 
 
