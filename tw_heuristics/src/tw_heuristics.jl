@@ -174,8 +174,8 @@ function main()
         methods = [m]
     end
 
-    # println(folder)
-    # println(methods)
+    println(folder)
+    println(methods)
 
     start = Dates.now()
     timestamp = Dates.format(start, "yyyy-mm-dd_HH-MM")
