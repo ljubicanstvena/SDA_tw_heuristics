@@ -157,7 +157,7 @@ end
 
 function main()
     parsed_args = parse_commandline()
-    println("Parsed args:")
+    # println("Parsed args:")
     # for (arg, val) in parsed_args
     #     println("  $arg  =>  $val")
     # end
@@ -174,12 +174,12 @@ function main()
         methods = [m]
     end
 
-    println(folder)
-    println(methods)
+    # println(folder)
+    # println(methods)
 
     start = Dates.now()
     timestamp = Dates.format(start, "yyyy-mm-dd_HH-MM")
-
+    # println(timestamp)
     load_run_save_statistics(folder, timestamp, methods)
 end
 
